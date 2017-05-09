@@ -8,34 +8,34 @@ import java.awt.event.ActionListener;
  */
 public class Main {
 
+    int w = 800;
+    int h = 800;
+
     public static void main(String[] args){
-        System.out.println("works");
+        new Main().start();
+    }
 
-        GameFrame frame = new GameFrame();
+    private void start(){
+        JFrame frame = new JFrame("Age of War");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new GamePanel(w,h), BorderLayout.CENTER);
+        frame.pack();
         frame.setVisible(true);
-        frame.setSize(800,800);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        JLabel label = new JLabel("Age of War");
-
-        GamePanel panel = new GamePanel();
-        frame.add(panel);
-        panel.add(label);
-
-
-        //Start game button (add difficulties? by changing a timer)
-        JButton start = new JButton();
-        panel.add(start);
-        start.setText("Start Game");
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start Game!");
-            }
-        });
-
     }
 
 
 
+//    //Start game button (add difficulties? by changing a timer)
+//    JButton start = new JButton();
+//        panel.add(start);
+//        start.setText("Start Game");
+//        start.addActionListener(new ActionListener() {
+//        @Override
+////            public void actionPerformed(ActionEvent e) {
+////                JOptionPane.showMessageDialog(null, "Start Game!");
+////            }
+//        public void actionPerformed(ActionEvent e) {
+//            System.out.println("start");
+//        }
+//    });
 }
