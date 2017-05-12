@@ -16,45 +16,51 @@ public abstract class GameObject {
     private Weapon weapon;
     private int price;
 
-    public void setPrice(int p){
+    public void setPrice(int p) {
         price = p;
     }
 
-    public int getPrice(int p){
-        return p;
+    public int getPrice() {
+        return price;
     }
 
-    public void setName(String s){
+    public void setName(String s) {
         name = s;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setWeapon(String name, int damage){
+    public void setWeapon(String name, int damage) {
         weapon = new Weapon(name, damage);
     }
 
-    public int getWeaponDamage(){
+    public String getWeaponName() {
+        return weapon.getName();
+    }
+
+    public int getWeaponDamage() {
         return weapon.getDamage();
     }
 
-    public void setHealth(int h){
+    public void setHealth(int h) {
         health = h;
     }
 
-    public void loseHealth(int h){
+    public void loseHealth(int h) {
         health = health - h;
     }
 
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
 
-    public void attack(GameObject o){
+    public void attack(GameObject o) {
         o.loseHealth(weapon.getDamage());
-    };
+    }
+
+    ;
 
     public abstract void draw(Graphics g);
 

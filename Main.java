@@ -11,18 +11,25 @@ public class Main {
     int w = 800;
     int h = 800;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Main().start();
     }
 
-    private void start(){
+    private void start() {
         JFrame frame = new JFrame("Age of War");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new GamePanel(w,h), BorderLayout.CENTER);
+        frame.add(new GamePanel(w, h), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
 
+    public int getW() {
+        return w;
+    }
+
+    public int getH() {
+        return h;
+    }
 
 
 //    //Start game button (add difficulties? by changing a timer)

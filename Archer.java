@@ -6,11 +6,11 @@ import java.net.URL;
 /**
  * Created by home on 5/9/17.
  */
-public class Melee extends GameObject {
+public class Archer extends GameObject {
 
     private Image image;
 
-    public Melee(String n, int h){
+    public Archer(String n, int h){
         setName(n);
         setHealth(h);
 
@@ -28,7 +28,7 @@ public class Melee extends GameObject {
     }
 
     public void draw (Graphics g){
-        g.drawImage(image, 10,700,100,100, null);
+        g.drawImage(image, 60,10,100,100, null);
     }
 
 }
