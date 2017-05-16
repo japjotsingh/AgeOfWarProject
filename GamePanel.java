@@ -1,8 +1,11 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.*;
 import java.net.URL;
+import java.util.Random;
 
 /**
  * Created by home on 5/5/17.
@@ -10,19 +13,20 @@ import java.net.URL;
 public class GamePanel extends JPanel implements MouseListener{
     Image bkgd;
     Graphics g;
-    Melee a;
+    List<Melee> meleeList = new ArrayList<>();
+    List<Archer> archerList = new ArrayList<>();
     Archer b;
     Timer t;
     JButton unit;
+    int count = 0;
 
     public GamePanel(int w, int h) {
         this.setPreferredSize(new Dimension(w, h));
         this.setBackground(Color.GREEN);
         initialize();
         getBkgd();
-        getInfo(a);
-        getInfo(b);
-        initButtons();
+//        getInfo(a);
+//        getInfo(b);
 
         t = new Timer(100, new ActionListener() {
             @Override
@@ -30,6 +34,8 @@ public class GamePanel extends JPanel implements MouseListener{
                 repaint();
             }
         });
+
+        t.start();
     }
 
     public void getInfo(GameObject o) {
@@ -49,17 +55,17 @@ public class GamePanel extends JPanel implements MouseListener{
     public void initialize() {
 
         addMouseListener(this);
+        initButtons();
 
         //making a new melee dude
-        a = new Melee("Clubman", 25);
-        a.setPrice(20);
-        a.setWeapon("Club", 5);
-
-        b = new Archer("archer", 35);
-        b.setPrice(50);
-        b.setWeapon("Bow", 15);
-
-
+//        Melee ma = new Melee("Clubman", 25);
+//        ma.setPrice(20);
+//        ma.setWeapon("Club", 5);
+//
+//        Archer aa = new Archer("Slingshot", 35);
+//        aa.setPrice(20);
+//        aa.setWeapon("Bow", 15);
+//        archerList.add(aa);
     }
 
     public void initButtons(){
@@ -74,6 +80,26 @@ public class GamePanel extends JPanel implements MouseListener{
                 //System.out.println("open units panel");
 
                 // Make a new unit!
+                //hashmap, with type and evoltion get info
+                // get the name from the radio that is selected,
+//                String t = "";
+//                int hp = -1;// base this on the t from above and
+//                int price = -1;// but based on the choices above
+                Melee ma = new Melee("Clubman", 25);
+                ma.setPrice(20);
+                ma.setWeapon("Club", 5);
+                meleeList.add(ma);
+
+                /*
+                If clicks archer icon
+                String t = "";
+                int hp = -1;
+                int price = -1;
+                Archer aa = new Archer (t,hp);
+                aa.setPrice(price);
+                aa.setWeapon("Bow", 15);
+                archerList.add(aa);
+                 */
             }
         });
     }
@@ -91,23 +117,27 @@ public class GamePanel extends JPanel implements MouseListener{
     public void paintComponent(Graphics g) {
 
         int w = this.getWidth();
-        int h = this.getHeight();
-
 
         g.drawImage(bkgd, 0, 0, 1500, 800, null);
 
         //drawing menus
-        g.fillRect(0, 0, 200, 100);
-        g.fillRect(w - 300, 0, 300, 100);
-        g.fillRect(w - 200, 100, 200, 30);
+        g.fillRect(0, 0, 200, 100); // xp and gold
+        g.fillRect(w - 300, 0, 300, 100); // main menu
+        g.fillRect(w - 200, 100, 200, 30); // evolution special
 
-        unit.setLocation(this.getWidth()-300, 30);
+        unit.setLocation(w-300,30);
 
-        a.draw(g);
+        for(Melee m: this.meleeList){
+            m.draw(g);
+        }
+
+        for(Archer a: this.archerList){
+            a.draw(g);
+        }
     }
 
     public void mouseClicked(MouseEvent arg0) {
-        System.out.println(arg0.getX() + " " + arg0.getY());
+//        System.out.println(arg0.getX() + " " + arg0.getY());
     }
 
     public void mouseEntered(MouseEvent arg0) {

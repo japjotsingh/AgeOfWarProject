@@ -22,27 +22,4 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
     }
-
-    public int getW() {
-        return w;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-
-//    //Start game button (add difficulties? by changing a timer)
-//    JButton start = new JButton();
-//        panel.add(start);
-//        start.setText("Start Game");
-//        start.addActionListener(new ActionListener() {
-//        @Override
-////            public void actionPerformed(ActionEvent e) {
-////                JOptionPane.showMessageDialog(null, "Start Game!");
-////            }
-//        public void actionPerformed(ActionEvent e) {
-//            System.out.println("start");
-//        }
-//    });
 }

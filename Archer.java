@@ -19,6 +19,7 @@ public class Archer extends GameObject {
     }
 
     private void getImage() {
+        //changes depending on evoltion
         URL url = Melee.class.getResource("Images/ClubMan.png");
         try {
             image = ImageIO.read(url);
