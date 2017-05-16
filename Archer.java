@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 /**
  * Created by home on 5/9/17.
@@ -20,7 +21,7 @@ public class Archer extends GameObject {
 
     private void getImage() {
         //changes depending on evoltion
-        URL url = Melee.class.getResource("Images/ClubMan.png");
+        URL url = Melee.class.getResource("Images/archer.png");
         try {
             image = ImageIO.read(url);
         } catch (Exception e) {
@@ -29,7 +30,14 @@ public class Archer extends GameObject {
     }
 
     public void draw (Graphics g){
-        g.drawImage(image, 60,10,100,100, null);
+        int w = 800;
+        int h = 800;
+
+        Random r = new Random();
+        int x = r.nextInt(((w-100)-100)+100);
+        int y = r.nextInt(((w-100)-100)+100);
+
+        g.drawImage(image, x,y,100,100, null);
     }
 
 }

@@ -17,24 +17,26 @@ public class GamePanel extends JPanel implements MouseListener{
     List<Archer> archerList = new ArrayList<>();
     Archer b;
     Timer t;
-    JButton unit;
-    int count = 0;
+    JButton unit, melee, archer, back;
+    boolean mainScreen = true;
 
     public GamePanel(int w, int h) {
         this.setPreferredSize(new Dimension(w, h));
         this.setBackground(Color.GREEN);
+
         initialize();
         getBkgd();
 //        getInfo(a);
 //        getInfo(b);
 
-        t = new Timer(100, new ActionListener() {
+        t = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
             }
         });
 
+        // once you select difficulty
         t.start();
     }
 
@@ -69,13 +71,27 @@ public class GamePanel extends JPanel implements MouseListener{
     }
 
     public void initButtons(){
-        unit = new JButton("test");
-        unit.setLocation(600, 50);
-        add(unit);
-        unit.setVisible(true);
-        unit.addActionListener(new ActionListener() {
+        setLayout(null);
+
+        back = new JButton("back");
+        back.setBounds(500, 100,70,20);
+        add(back);
+        back.setVisible(true);
+        back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mainScreen = !mainScreen;
+            }
+        });
+
+        // in unit menu
+        melee = new JButton("Melee");
+        melee.setBounds(500, 50,70, 20);
+        add(melee);
+        melee.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //opens the unit menu
                 //open panel to buy units
                 //System.out.println("open units panel");
 
@@ -102,6 +118,33 @@ public class GamePanel extends JPanel implements MouseListener{
                  */
             }
         });
+
+        archer = new JButton("Archer");
+        archer.setBounds(600, 50,70, 20);
+        add(archer);
+        archer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                String t = "";
+//                int hp = -1;
+//                int price = -1;
+                Archer aa = new Archer ("Slighshot", 35);
+                aa.setPrice(40);
+                aa.setWeapon("Bow", 15);
+                archerList.add(aa);
+            }
+        });
+
+        unit = new JButton("UnitMenu");
+        unit.setBounds(500,50, 70, 20);
+        add(unit);
+        unit.setVisible(true);
+        unit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainScreen = false;
+            }
+        });
     }
 
     public void getBkgd() {
@@ -122,10 +165,25 @@ public class GamePanel extends JPanel implements MouseListener{
 
         //drawing menus
         g.fillRect(0, 0, 200, 100); // xp and gold
-        g.fillRect(w - 300, 0, 300, 100); // main menu
+        g.fillRect(w - 300, 0, 300, 100); // main menu area
         g.fillRect(w - 200, 100, 200, 30); // evolution special
 
-        unit.setLocation(w-300,30);
+        // a boolean switch for if we are in the unit menu or main menu, boolean switches with back button
+
+        if(mainScreen) {
+            melee.setVisible(false);
+            archer.setVisible(false);
+            unit.setLocation(w - 300, 30);
+            unit.setVisible(true);
+        }
+        else{
+            unit.setVisible(false);
+            melee.setLocation(w-300, 30);
+            archer.setLocation(w-200, 30);
+            melee.setVisible(true);
+            archer.setVisible(true);
+        }
+
 
         for(Melee m: this.meleeList){
             m.draw(g);
