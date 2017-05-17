@@ -21,7 +21,7 @@ public class Melee extends GameObject {
 
     private void getImage() {
         //different depending on which evolution you are on
-        URL url = Melee.class.getResource("Images/ClubMan.png");
+        URL url = Melee.class.getResource("Images/club.png");
         try {
             image = ImageIO.read(url);
         } catch (Exception e) {
