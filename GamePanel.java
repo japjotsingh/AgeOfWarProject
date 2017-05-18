@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements MouseListener{
                 ma.setPrice(15);
                 ma.setWeapon("Club", 5);
                 meleeList.add(ma);
+//                repaint();
 
                 /*
                 If clicks archer icon
@@ -205,18 +206,18 @@ public class GamePanel extends JPanel implements MouseListener{
         for(Melee m: this.meleeList){
             m.draw(g);
         }
-
-        for(Archer a: this.archerList){
-            a.draw(g);
-        }
-
-        for(Vehicle v: this.vehicleList){
-            v.draw(g);
-        }
+//
+//        for(Archer a: this.archerList){
+//            a.draw(g);
+//        }
+//
+//        for(Vehicle v: this.vehicleList){
+//            v.draw(g);
+//        }
     }
 
     public void mouseClicked(MouseEvent arg0) {
-//        System.out.println(arg0.getX() + " " + arg0.getY());
+        System.out.println(arg0.getX() + " " + arg0.getY());
     }
 
     public void mouseEntered(MouseEvent arg0) {
